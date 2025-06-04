@@ -1,5 +1,4 @@
-import React from "react";
-import { View, Text, Button, TouchableOpacity } from "react-native";
+import { Text, TextInput, TouchableOpacity, View } from "react-native";
 
 export default function addFood({ navigation }) {
   return (
