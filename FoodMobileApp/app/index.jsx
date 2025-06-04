@@ -1,5 +1,8 @@
 import { Text, View } from "react-native";
-import MenuList from "./MenuList";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
+import MenuList from "../components/MenuList";
+
 
 export default function Index() {
   return (
@@ -10,8 +13,9 @@ export default function Index() {
         alignItems: "center",
       }}
     >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
-      <MenuList/>
+      <Header />
+      <MenuList />
+      <Footer />
     </View>
   );
 }
