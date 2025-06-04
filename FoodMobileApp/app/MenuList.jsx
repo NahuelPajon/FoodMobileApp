@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { FlatList, View, ActivityIndicator, Text, StyleSheet } from 'react-native';
 import MenuItem from './MenuItem';
+import { Platform } from 'react-native';
+
 
 const MenuList = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const API_URL = 
+    Platform.OS === 'web'
+    ? 'http://localhost:3000/FOODS' //para verlo desde la web
+    : 'http://10.13.22.45:3000/FOODS'; //para verlo desde el celular
 
   useEffect(() => {
-    fetch('?') 
+    fetch(API_URL) 
       .then(res => res.json())
       .then(menu => {
         setData(menu);
@@ -28,9 +34,9 @@ const MenuList = () => {
       keyExtractor={(item) => item.id.toString()}
       renderItem={({ item }) => (
         <MenuItem
-          nombre={item.nombre}
-          descripcion={item.descripcion}
-          precio={item.precio}
+          nombre={item.name}
+          descripcion={item.details}
+          precio={item.price}
           stock={item.stock}
         />
       )}
