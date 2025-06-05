@@ -1,5 +1,50 @@
-import React from "react";
-import { View, Text, Button, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  Button,
+  TouchableOpacity,
+  Alert,
+  Platform,
+  StyleSheet,
+  TextInput,
+} from "react-native";
+
+const [nombre, setNombre] = useState("");
+const [descripcion, setDescripcion] = useState("");
+const [precio, setPrecio] = useState("");
+const [stock, setStock] = useState("");
+
+const API_URL =
+  Platform.OS === "web"
+    ? "http://localhost:3000/FOODS" //para verlo desde la web
+    : "http://10.13.22.45:3000/FOODS"; //para verlo desde el celular
+
+const agregarComida = async () => {
+  const nuevaComida = {
+    nombre,
+    descripcion,
+    precio: parseFloat(precio),
+    stock: parseInt(stock),
+  };
+  try {
+    const response = await fetch(API_URL, {
+      method: POST,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(nuevaComida),
+    });
+    if (response.ok) {
+      Alert.alert("¡Comida agregada!");
+    } else {
+      Alert.alert("Error al agregar comida.");
+    }
+  } catch (error) {
+    console.error("Error al agregar comida:", error);
+    Alert.alert("Error al agregar comida.");
+  }
+};
 
 export default function addFood({ navigation }) {
   return (
@@ -23,39 +68,13 @@ export default function addFood({ navigation }) {
       <TouchableOpacity
         style={styles.btn}
         title="Agregar"
-        onPress={() => navigation.navigate(index)}
+        onPress={agregarComida}
       >
         <Text style={styles.btnText}>Agregar</Text>
       </TouchableOpacity>
     </View>
   );
 }
-
-const agregarComida = () => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const API_URL =
-    Platform.OS === "web"
-      ? "http://localhost:3000/FOODS" //para verlo desde la web
-      : "http://10.13.22.45:3000/FOODS"; //para verlo desde el celular
-
-  useEffect(() => {
-    fetch(API_URL)
-      .then((res) => res.json())
-      .then((menu) => {
-        setData(menu);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Error al cargar menú:", err);
-        setLoading(false);
-      });
-  }, []);
-
-  if (loading) return <ActivityIndicator size="large" style={styles.loader} />;
-  if (data.length === 0)
-    return <Text style={styles.empty}>No hay comidas disponibles.</Text>;
-};
 
 const styles = {
   container: {
