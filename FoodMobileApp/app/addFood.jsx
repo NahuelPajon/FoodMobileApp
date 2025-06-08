@@ -46,7 +46,7 @@ const agregarComida = async () => {
   }
 };
 
-export default function addFood({ navigation }) {
+export default function addFood() {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Agregar Comida</Text>
