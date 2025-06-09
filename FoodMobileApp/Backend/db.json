@@ -1,7 +1,7 @@
 {
   "FOODS": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Hamburger",
       "price": 5.99,
       "image": "/src/images/hamburger.png",
@@ -11,7 +11,7 @@
       "condiments": "Ketchup, Mostaza, Mayonesa"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Pizza",
       "price": 8.99,
       "image": "/src/images/pizza.png",
@@ -21,7 +21,7 @@
       "condiments": "Ají molido, Aceite de oliva"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Sushi",
       "price": 12.99,
       "image": "/src/images/sushi.png",
@@ -31,7 +31,7 @@
       "condiments": "Salsa de soja, Wasabi, Jengibre encurtido"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Empanadas",
       "price": 4.99,
       "image": "/src/images/empanada.png",
@@ -41,7 +41,7 @@
       "condiments": "Comino, Ají molido, Pimienta negra"
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Milanesa con Papas",
       "price": 7.99,
       "image": "/src/images/milanesa.png",
@@ -51,7 +51,7 @@
       "condiments": "Sal, Pimienta, Limón"
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "Coca-Cola",
       "price": 1.99,
       "image": "/src/images/cocacola.png",
@@ -61,7 +61,7 @@
       "condiments": ""
     },
     {
-      "id": 7,
+      "id": "7",
       "name": "Chivito",
       "price": 12.99,
       "image": "/src/images/chivito.png",
@@ -71,7 +71,7 @@
       "condiments": "Mayonesa, Ketchup, Mostaza"
     },
     {
-      "id": 8,
+      "id": "8",
       "name": "Tequeños",
       "price": 1.59,
       "image": "/src/images/tequeno.png",
@@ -79,6 +79,13 @@
       "details": "Delicias de Venezuela, los tequeños son palitos de queso envueltos en masa y fritos. Crujientes por fuera, cremosos por dentro.",
       "ingredients": "Queso blanco duro, Harina de trigo, Huevos, Mantequilla",
       "condiments": "Salsas dulces, Guasacaca, Salsa tártara"
+    },
+    {
+      "id": 9,
+      "name": "otra comidita",
+      "details": "comida que se come con la boca al parecer",
+      "price": 10,
+      "stock": 10
     }
   ]
 }

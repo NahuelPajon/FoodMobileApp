@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
+import React, { useState } from "react";
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from "react-native";
 
 const MenuItem = ({ nombre, descripcion, precio, stock }) => {
   const [agregados, setAgregados] = useState(0);
@@ -8,7 +8,7 @@ const MenuItem = ({ nombre, descripcion, precio, stock }) => {
     if (agregados < stock) {
       setAgregados(agregados + 1);
     } else {
-      Alert.alert('Stock insuficiente', 'Ya agregaste el máximo disponible.');
+      Alert.alert("Stock insuficiente", "Ya agregaste el máximo disponible.");
     }
   };
 
@@ -35,52 +35,52 @@ const MenuItem = ({ nombre, descripcion, precio, stock }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     padding: 12,
     marginBottom: 12,
     borderRadius: 10,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOpacity: 0.1,
     shadowOffset: { width: 0, height: 2 },
     elevation: 3,
   },
   nombre: {
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   descripcion: {
     fontSize: 14,
-    color: '#666',
+    color: "#666",
     marginVertical: 6,
   },
   info: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     marginBottom: 10,
   },
   precio: {
     fontSize: 16,
-    color: '#27ae60',
+    color: "#27ae60",
   },
   stock: {
     fontSize: 14,
-    color: '#888',
+    color: "#888",
   },
   btn: {
-    backgroundColor: '#007AFF',
+    backgroundColor: "#007AFF",
     padding: 10,
     borderRadius: 8,
-    alignItems: 'center',
+    alignItems: "center",
   },
   btnText: {
-    color: '#fff',
-    fontWeight: 'bold',
+    color: "#fff",
+    fontWeight: "bold",
   },
   agregado: {
     marginTop: 8,
-    textAlign: 'center',
-    color: '#27ae60',
-    fontWeight: '600',
+    textAlign: "center",
+    color: "#27ae60",
+    fontWeight: "600",
   },
 });
 

@@ -14,7 +14,10 @@ export default function cart({ navigation }) {
       <TextInput type="number" placeholder="Ej.: 10.99" />
       <Text>Stock: </Text>
       <TextInput type="number" placeholder="Ej.: 100" />
-      <TouchableOpacity title="Agregar" onPress={() => navigation.navigate(index)}>
+      <TouchableOpacity
+        title="Agregar"
+        onPress={() => navigation.navigate(index)}
+      >
         Agregar
       </TouchableOpacity>
     </View>

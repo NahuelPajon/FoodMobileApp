@@ -3,7 +3,6 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import MenuList from "../components/MenuList";
 
-
 export default function Index() {
   return (
     <View
@@ -13,7 +12,6 @@ export default function Index() {
         alignItems: "center",
       }}
     >
-      <Header />
       <MenuList />
       <Footer />
     </View>
