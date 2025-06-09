@@ -130,7 +130,7 @@ const styles = {
     alignItems: "center",
   },
   btn: {
-    backgroundColor: "#007AFF",
+    backgroundColor: "#B163FF",
     padding: 10,
     borderRadius: 8,
     alignItems: "center",
