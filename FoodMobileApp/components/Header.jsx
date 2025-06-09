@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     height: 70,
     width: "100%",
     // position: "absolute",
-    backgroundColor: "#6200EE",
+    backgroundColor: "#7F00FF",
     paddingHorizontal: 16,
     flexDirection: "row",
     alignItems: "flex-end",

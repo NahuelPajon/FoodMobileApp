@@ -37,9 +37,12 @@ const MenuList = () => {
   return (
     <FlatList
       data={data}
-      keyExtractor={(item) => item.id.toString()}
+      keyExtractor={(item) => item.id}
+      scrollEnabled={true}
+      showsVerticalScrollIndicator={false}
       renderItem={({ item }) => (
         <MenuItem
+          id={item.id}
           nombre={item.name}
           descripcion={item.details}
           precio={item.price}

@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Alert } from "react-native";
+import { useCart } from "../context/CartContext";
 
-const MenuItem = ({ nombre, descripcion, precio, stock }) => {
+const MenuItem = ({ id, nombre, descripcion, precio, stock }) => {
   const [agregados, setAgregados] = useState(0);
+  const { addToCart } = useCart(); 
 
   const agregarAlCarrito = () => {
     if (agregados < stock) {
       setAgregados(agregados + 1);
+      addToCart({ id, nombre, descripcion, precio, stock });
     } else {
       Alert.alert("Stock insuficiente", "Ya agregaste el máximo disponible.");
     }
@@ -47,6 +50,7 @@ const styles = StyleSheet.create({
   nombre: {
     fontSize: 18,
     fontWeight: "bold",
+    color: "#2B0057",
   },
   descripcion: {
     fontSize: 14,
@@ -67,7 +71,7 @@ const styles = StyleSheet.create({
     color: "#888",
   },
   btn: {
-    backgroundColor: "#007AFF",
+    backgroundColor: "#B163FF",
     padding: 10,
     borderRadius: 8,
     alignItems: "center",

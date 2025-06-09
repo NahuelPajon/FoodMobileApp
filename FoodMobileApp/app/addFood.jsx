@@ -24,7 +24,7 @@ export default function addFood() {
   const idParaAsignar = async () => {
     const response = await fetch(API_URL);
     const data = await response.json();
-    const ultimoId = Math.max(...data.map((item) => Number(item.id)));
+    const ultimoId = Math.max(...data.map((item) => item.id));
     return ultimoId + 1;
   };
 

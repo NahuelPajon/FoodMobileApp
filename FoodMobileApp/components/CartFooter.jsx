@@ -1,14 +1,19 @@
 import { Link } from "expo-router";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useCart } from "../context/CartContext";
 
 export default function Footer() {
+  const { cart } = useCart();
+  if (cart.length === 0) return null;
+
+  let totalCart = cart.reduce((acc, item) => {
+    return acc + item.precio * item.cantidad;
+  }, 0);
+
   return (
     <View style={styles.container}>
-      <Link href="/addFood" asChild>
-        <TouchableOpacity style={styles.botonAgregarComida}>
-          <Text style={styles.text}>Nueva comida</Text>
-        </TouchableOpacity>
-      </Link>
+      <Text style={styles.text}>Total: </Text>
+      <Text style={styles.text}>${totalCart.toFixed(2)}</Text>
     </View>
   );
 }
@@ -16,7 +21,6 @@ export default function Footer() {
 const styles = StyleSheet.create({
   container: {
     height: 90,
-    // position: 'absolute',
     bottom: 0,
     width: "100%",
     flexDirection: "row",
@@ -32,11 +36,5 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
     lineHeight: 65,
-  },
-  botonAgregarComida: {
-    borderRadius: 8,
-    backgroundColor: "#B163FF",
-    height: "70%",
-    width: "90%",
   },
 });
