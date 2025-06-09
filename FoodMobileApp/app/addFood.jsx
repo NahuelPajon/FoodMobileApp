@@ -5,6 +5,10 @@ import {
   Alert,
   Platform,
   TouchableOpacity,
+  Keyboard, 
+  TouchableWithoutFeedback,
+  KeyboardAvoidingView,
+  ScrollView,
 } from "react-native";
 import { useState } from "react";
 
@@ -68,7 +72,17 @@ export default function AddFood() {
   };
 
   return (
-    <View style={styles.container}>
+  <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === "ios" ? "padding" : undefined}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 100 : 0}
+    >
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <ScrollView
+          keyboardShouldPersistTaps="handled"
+          contentContainerStyle={styles.scrollContainer}
+        >
+          <View style={styles.container}>
       <Text style={styles.text}>Agregar Comida</Text>
       <Text style={styles.text}>
         Aqui puedes agregar comidas para publicar y vender
@@ -118,15 +132,22 @@ export default function AddFood() {
       <TouchableOpacity style={styles.btn} onPress={agregarComida}>
         <Text style={styles.btnText}>Agregar</Text>
       </TouchableOpacity>
-    </View>
-  );
-}
+      </View>
+    </ScrollView>
+  </TouchableWithoutFeedback>
+  </KeyboardAvoidingView>
+);
+  }
 
 const styles = {
+  scrollContainer: {
+  flexGrow: 1,
+},
   container: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    paddingBottom: 100,
   },
   btn: {
     backgroundColor: "#B163FF",
