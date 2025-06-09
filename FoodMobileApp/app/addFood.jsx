@@ -1,50 +1,48 @@
-import React, { useState } from "react";
 import {
   View,
   Text,
-  Button,
-  TouchableOpacity,
+  TextInput,
   Alert,
   Platform,
-  StyleSheet,
-  TextInput,
+  TouchableOpacity,
 } from "react-native";
+import { useState } from "react";
 
 const API_URL =
   Platform.OS === "web"
-    ? "http://localhost:3000/FOODS" //para verlo desde la web
-    : "http://192.168.1.52:3000/FOODS"; //para verlo desde el celular
+    ? "http://localhost:3000/FOODS"
+    : "http://172.20.10.4:3000/FOODS"; // reemplazá con la IP correcta si es necesario
 
-export default function addFood() {
+export default function AddFood() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [stock, setStock] = useState("");
 
   const idParaAsignar = async () => {
-    const response = await fetch(API_URL);
-    const data = await response.json();
-    const ultimoId = Math.max(...data.map((item) => item.id));
-    return ultimoId + 1;
-  };
+  const response = await fetch(API_URL);
+  const data = await response.json();
+  const ultimoId = Math.max(...data.map((item) => item.id), 0);
+  return ultimoId + 1;
+};
 
   const agregarComida = async () => {
+    const priceNumber = parseFloat(price);
+    const stockNumber = parseInt(stock);
+
+    if (!name || !description || isNaN(priceNumber) || isNaN(stockNumber)) {
+      Alert.alert("Por favor, completa todos los campos correctamente.");
+      return;
+    }
+
     const nuevaComida = {
       id: await idParaAsignar(),
       name,
       details: description,
-      price: parseFloat(price),
-      stock: parseInt(stock),
+      price: priceNumber,
+      stock: stockNumber,
     };
-    if (
-      !nuevaComida.name ||
-      !nuevaComida.details ||
-      !nuevaComida.price ||
-      !nuevaComida.stock
-    ) {
-      Alert.alert("Por favor, completa todos los campos.");
-      return;
-    }
+
     try {
       const response = await fetch(API_URL, {
         method: "POST",
@@ -53,19 +51,19 @@ export default function addFood() {
         },
         body: JSON.stringify(nuevaComida),
       });
+
       if (response.ok) {
-        Alert.alert("¡Comida agregada!");
-        // Limpiar los campos después de agregar la comida
+        Alert.alert("¡Comida agregada con éxito!");
         setName("");
         setDescription("");
         setPrice("");
         setStock("");
       } else {
-        Alert.alert("Error al agregar comida.");
+        Alert.alert("Hubo un error al agregar la comida.");
       }
     } catch (error) {
+      Alert.alert("Error al conectarse con el servidor.");
       console.error("Error al agregar comida:", error);
-      Alert.alert("Error al agregar comida.");
     }
   };
 
@@ -75,48 +73,49 @@ export default function addFood() {
       <Text style={styles.text}>
         Aqui puedes agregar comidas para publicar y vender
       </Text>
+
       <Text style={styles.text}>Nombre: </Text>
       <TextInput
         style={styles.input}
-        keyboardType="text"
-        textContentType="text"
+        keyboardType="default"
+        textContentType="none"
         value={name}
         onChangeText={setName}
         placeholder="Ej.: Pizza"
       />
+
       <Text style={styles.text}>Descripción: </Text>
       <TextInput
         style={styles.inputDescription}
-        keyboardType="text"
-        textContentType="text"
+        keyboardType="default"
+        textContentType="none"
         value={description}
         onChangeText={setDescription}
         multiline
         placeholder="Esta comida ..."
       />
+
       <Text style={styles.text}>Precio: </Text>
       <TextInput
         style={styles.input}
         keyboardType="numeric"
-        textContentType="decimal"
+        textContentType="none"
         value={price}
         onChangeText={setPrice}
         placeholder="Ej.: 10.99"
       />
+
       <Text style={styles.text}>Stock: </Text>
       <TextInput
         style={styles.input}
         keyboardType="numeric"
-        textContentType="number"
-        placeholder="Ej.: 100"
+        textContentType="none"
         value={stock}
         onChangeText={setStock}
+        placeholder="Ej.: 100"
       />
-      <TouchableOpacity
-        style={styles.btn}
-        title="Agregar"
-        onPress={agregarComida}
-      >
+
+      <TouchableOpacity style={styles.btn} onPress={agregarComida}>
         <Text style={styles.btnText}>Agregar</Text>
       </TouchableOpacity>
     </View>
@@ -142,7 +141,7 @@ const styles = {
     fontWeight: "bold",
     fontSize: 18,
     textAlign: "center",
-    lineHeight: 50, // Centrar verticalmente el texto con respecto al botón
+    lineHeight: 50,
   },
   text: {
     fontSize: 24,

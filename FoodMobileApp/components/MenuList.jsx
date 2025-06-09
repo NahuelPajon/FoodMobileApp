@@ -15,7 +15,7 @@ const MenuList = () => {
   const API_URL =
     Platform.OS === "web"
       ? "http://localhost:3000/FOODS" //para verlo desde la web
-      : "http://192.168.1.52:3000/FOODS"; //para verlo desde el celular
+      : "http://172.20.10.4:3000/FOODS"; //para verlo desde el celular
 
   useEffect(() => {
     fetch(API_URL)

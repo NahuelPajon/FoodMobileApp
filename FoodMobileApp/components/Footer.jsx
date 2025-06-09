@@ -4,7 +4,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 export default function Footer() {
   return (
     <View style={styles.container}>
-      <Link href="/addFood" asChild>
+      <Link href="/AddFood" asChild>
         <TouchableOpacity style={styles.botonAgregarComida}>
           <Text style={styles.text}>Nueva comida</Text>
         </TouchableOpacity>
